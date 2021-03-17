@@ -14,10 +14,6 @@
 		{
 			"Name": "GLTFImporter",
 			"Enabled": true
-		},
-		{
-			"Name": "FMODStudio",
-			"Enabled": true
 		}
 	]
 }
