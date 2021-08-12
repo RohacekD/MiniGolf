@@ -51,6 +51,9 @@ protected:
 
 	FVector m_ForwardVector;
 
+	/** Ball can be hit only when it is stationary **/
+	bool bCanHit;
+
 public:
 	/** Returns Ball subobject **/
 	FORCEINLINE class UStaticMeshComponent* GetBall() const { return Ball; }

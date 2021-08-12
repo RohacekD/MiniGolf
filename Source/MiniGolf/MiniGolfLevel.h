@@ -18,5 +18,8 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	int NumCoins;
 
-	void OnCoinCollected();
+	void OnBallHit();
+
+	UPROPERTY(BlueprintReadOnly)
+	int NumHits;
 };

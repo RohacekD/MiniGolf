@@ -9,6 +9,7 @@
 #include "Engine/CollisionProfile.h"
 #include "Engine/StaticMesh.h"
 #include "DrawDebugHelpers.h"
+#include "MiniGolf/MiniGolfLevel.h"
 
 AMiniGolfBall::AMiniGolfBall()
 	: m_ForwardVector(1.0f, 0.0f, 0.0f)
@@ -44,6 +45,8 @@ AMiniGolfBall::AMiniGolfBall()
 
 	// Set up forces
 	JumpImpulse = 350000.0f;
+
+	bCanHit = true;
 }
 
 //=================================================================================
@@ -53,6 +56,7 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 	DrawDebugLine(GetWorld(), Ball->GetComponentLocation() + 0.1f * m_ForwardVector, Ball->GetComponentLocation() + 100.1f * m_ForwardVector, FColor::Red, false, -1.f, 0U, 5.f);
 }
 
+//=================================================================================
 void AMiniGolfBall::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	PlayerInputComponent->BindAxis("Turn", this, &AMiniGolfBall::TurnRight);
@@ -60,6 +64,7 @@ void AMiniGolfBall::SetupPlayerInputComponent(class UInputComponent* PlayerInput
 	PlayerInputComponent->BindAction("Hit", IE_Pressed, this, &AMiniGolfBall::Hit);
 }
 
+//=================================================================================
 void AMiniGolfBall::TurnRight(float Val)
 {
 	const FRotator rotator(0.f, Val, 0.f);
@@ -68,12 +73,22 @@ void AMiniGolfBall::TurnRight(float Val)
 	SpringArm->SetRelativeRotation(m_ForwardVector.Rotation().Add(-45.f, 0.f, 0.f));
 }
 
+//=================================================================================
 void AMiniGolfBall::Hit()
 {
-	const FVector Impulse = m_ForwardVector * JumpImpulse;
-	Ball->AddImpulse(Impulse);
+	if (bCanHit)
+	{
+		const FVector Impulse = m_ForwardVector * JumpImpulse;
+		Ball->AddImpulse(Impulse);
+
+		if (auto *level = Cast< AMiniGolfLevel>(GetLevel())) {
+			level->OnBallHit();
+		}
+		bCanHit = false;
+	}
 }
 
+//=================================================================================
 void AMiniGolfBall::NotifyHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit)
 {
 	Super::NotifyHit(MyComp, Other, OtherComp, bSelfMoved, HitLocation, HitNormal, NormalImpulse, Hit);

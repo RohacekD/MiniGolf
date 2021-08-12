@@ -20,3 +20,9 @@ void AMiniGolfLevel::BeginPlay()
 	}
 	NumCoins = FoundActors.Num();
 }
+
+//=================================================================================
+void AMiniGolfLevel::OnBallHit()
+{
+	NumHits++;
+}
