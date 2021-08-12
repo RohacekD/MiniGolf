@@ -11,6 +11,8 @@
 #include "DrawDebugHelpers.h"
 #include "MiniGolf/MiniGolfLevel.h"
 
+const float AMiniGolfBall::s_ChargeTime = 2.f;
+
 AMiniGolfBall::AMiniGolfBall()
 	: m_ForwardVector(1.0f, 0.0f, 0.0f)
 {
@@ -64,6 +66,12 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 			bCanHit = true;
 		}
 	}
+
+	if (GetWorldTimerManager().IsTimerActive(m_ChargingTime))
+	{
+		const auto power = FString::Printf(TEXT("Power %f"), GetCurrentPower());
+		DrawDebugString(GetWorld(), FVector(0, 3, 0), power, this, FColor::White, DeltaSeconds, false, 2.f);
+	}
 }
 
 //=================================================================================
@@ -71,7 +79,8 @@ void AMiniGolfBall::SetupPlayerInputComponent(class UInputComponent* PlayerInput
 {
 	PlayerInputComponent->BindAxis("Turn", this, &AMiniGolfBall::TurnRight);
 
-	PlayerInputComponent->BindAction("Hit", IE_Pressed, this, &AMiniGolfBall::Hit);
+	PlayerInputComponent->BindAction("Hit", IE_Pressed, this, &AMiniGolfBall::Charge);
+	PlayerInputComponent->BindAction("Hit", IE_Released, this, &AMiniGolfBall::Hit);
 }
 
 //=================================================================================
@@ -80,6 +89,16 @@ void AMiniGolfBall::BeginPlay()
 	Super::BeginPlay();
 	bCanHit = false;
 	GetWorldTimerManager().SetTimer(m_SinceLastHit, 0.5f, false, 0.5f);
+}
+
+//=================================================================================
+float AMiniGolfBall::GetCurrentPower()
+{
+	if (!GetWorldTimerManager().IsTimerActive(m_ChargingTime))
+	{
+		return 0.f;
+	}
+	return GetWorldTimerManager().GetTimerElapsed(m_ChargingTime) / s_ChargeTime;
 }
 
 //=================================================================================
@@ -92,11 +111,19 @@ void AMiniGolfBall::TurnRight(float Val)
 }
 
 //=================================================================================
+void AMiniGolfBall::Charge()
+{
+	if(bCanHit)
+		GetWorldTimerManager().SetTimer(m_ChargingTime, this, &AMiniGolfBall::Hit, s_ChargeTime, false, s_ChargeTime);
+}
+
+//=================================================================================
 void AMiniGolfBall::Hit()
 {
 	if (bCanHit)
 	{
-		const FVector Impulse = m_ForwardVector * JumpImpulse;
+		const FVector Impulse = m_ForwardVector * JumpImpulse * GetCurrentPower();
+		GetWorldTimerManager().ClearTimer(m_ChargingTime);
 		Ball->AddImpulse(Impulse);
 
 		if (auto* level = Cast< AMiniGolfLevel>(GetLevel())) {

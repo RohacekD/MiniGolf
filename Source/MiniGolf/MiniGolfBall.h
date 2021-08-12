@@ -23,6 +23,8 @@ class AMiniGolfBall : public APawn
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Ball, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* Camera;
 
+	const static float s_ChargeTime;
+
 public:
 	AMiniGolfBall();
 
@@ -36,7 +38,10 @@ public:
 
 protected:
 
-	/** Handle ball hit action */
+	/** Charge for a hit **/
+	void Charge();
+
+	/** Handle ball hit action **/
 	void Hit();
 
 	void TurnRight(float Val);
@@ -55,10 +60,13 @@ protected:
 	bool bCanHit;
 
 	FTimerHandle m_SinceLastHit;
+	FTimerHandle m_ChargingTime;
 
 
 	//=================================================================================
 	void BeginPlay() override;
+
+	float GetCurrentPower();
 
 public:
 	/** Returns Ball subobject **/
