@@ -54,6 +54,12 @@ protected:
 	/** Ball can be hit only when it is stationary **/
 	bool bCanHit;
 
+	FTimerHandle m_SinceLastHit;
+
+
+	//=================================================================================
+	void BeginPlay() override;
+
 public:
 	/** Returns Ball subobject **/
 	FORCEINLINE class UStaticMeshComponent* GetBall() const { return Ball; }

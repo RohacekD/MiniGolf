@@ -21,8 +21,8 @@ AMiniGolfBall::AMiniGolfBall()
 	Ball->SetStaticMesh(BallMesh.Object);
 	Ball->BodyInstance.SetCollisionProfileName(UCollisionProfile::PhysicsActor_ProfileName);
 	Ball->SetSimulatePhysics(true);
-	Ball->SetAngularDamping(0.1f);
-	Ball->SetLinearDamping(0.1f);
+	Ball->SetAngularDamping(2.f);
+	Ball->SetLinearDamping(1.f);
 	Ball->BodyInstance.MassScale = 3.5f;
 	Ball->BodyInstance.MaxAngularVelocity = 800.0f;
 	Ball->SetNotifyRigidBodyCollision(true);
@@ -46,14 +46,24 @@ AMiniGolfBall::AMiniGolfBall()
 	// Set up forces
 	JumpImpulse = 350000.0f;
 
-	bCanHit = true;
+	bCanHit = false;
 }
 
 //=================================================================================
 void AMiniGolfBall::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	DrawDebugLine(GetWorld(), Ball->GetComponentLocation() + 0.1f * m_ForwardVector, Ball->GetComponentLocation() + 100.1f * m_ForwardVector, FColor::Red, false, -1.f, 0U, 5.f);
+	if (bCanHit)
+		DrawDebugLine(GetWorld(), Ball->GetComponentLocation() + 0.1f * m_ForwardVector, Ball->GetComponentLocation() + 100.1f * m_ForwardVector, FColor::Red, false, -1.f, 0U, 5.f);
+
+	FRigidBodyState state;
+	if (Ball->GetRigidBodyState(state))
+	{
+		const auto timeUntilAllowHit = GetWorldTimerManager().GetTimerRemaining(m_SinceLastHit);
+		if (!bCanHit && timeUntilAllowHit <= 0.0f && state.LinVel.Size() < 1e-4) {
+			bCanHit = true;
+		}
+	}
 }
 
 //=================================================================================
@@ -62,6 +72,14 @@ void AMiniGolfBall::SetupPlayerInputComponent(class UInputComponent* PlayerInput
 	PlayerInputComponent->BindAxis("Turn", this, &AMiniGolfBall::TurnRight);
 
 	PlayerInputComponent->BindAction("Hit", IE_Pressed, this, &AMiniGolfBall::Hit);
+}
+
+//=================================================================================
+void AMiniGolfBall::BeginPlay()
+{
+	Super::BeginPlay();
+	bCanHit = false;
+	GetWorldTimerManager().SetTimer(m_SinceLastHit, 0.5f, false, 0.5f);
 }
 
 //=================================================================================
@@ -81,10 +99,11 @@ void AMiniGolfBall::Hit()
 		const FVector Impulse = m_ForwardVector * JumpImpulse;
 		Ball->AddImpulse(Impulse);
 
-		if (auto *level = Cast< AMiniGolfLevel>(GetLevel())) {
+		if (auto* level = Cast< AMiniGolfLevel>(GetLevel())) {
 			level->OnBallHit();
 		}
 		bCanHit = false;
+		GetWorldTimerManager().SetTimer(m_SinceLastHit, 0.5f, false);
 	}
 }
 
