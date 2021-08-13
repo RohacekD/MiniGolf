@@ -45,6 +45,7 @@ protected:
 	void Hit();
 
 	void TurnRight(float Val);
+	void Elevate(float Val);
 
 	// AActor interface
 	virtual void NotifyHit(class UPrimitiveComponent* MyComp, class AActor* Other, class UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;

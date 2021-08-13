@@ -78,6 +78,7 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 void AMiniGolfBall::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	PlayerInputComponent->BindAxis("Turn", this, &AMiniGolfBall::TurnRight);
+	PlayerInputComponent->BindAxis("Elevate", this, &AMiniGolfBall::Elevate);
 
 	PlayerInputComponent->BindAction("Hit", IE_Pressed, this, &AMiniGolfBall::Charge);
 	PlayerInputComponent->BindAction("Hit", IE_Released, this, &AMiniGolfBall::Hit);
@@ -108,6 +109,17 @@ void AMiniGolfBall::TurnRight(float Val)
 	m_ForwardVector = rotator.RotateVector(m_ForwardVector);
 
 	SpringArm->SetRelativeRotation(m_ForwardVector.Rotation().Add(-45.f, 0.f, 0.f));
+}
+
+//=================================================================================
+void AMiniGolfBall::Elevate(float Val)
+{
+	// TODO needs quaternion cause of gimbal lock
+	// const FRotator rotator(Val, 0.f, 0.f);
+	// m_ForwardVector = rotator.RotateVector(m_ForwardVector);
+	// m_ForwardVector.Z = FMath::Clamp(m_ForwardVector.Z, 0.f, .5f);
+	// 
+	// SpringArm->SetRelativeRotation(m_ForwardVector.Rotation().Add(-45.f, 0.f, 0.f));
 }
 
 //=================================================================================
