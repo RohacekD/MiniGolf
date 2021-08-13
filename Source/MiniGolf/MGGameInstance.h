@@ -24,16 +24,40 @@ public:
 	~UMGGameInstance();
 
 	UFUNCTION(BlueprintCallable)
-		void LevelFinished(int score);
+	void LevelFinished(int score);
 
 	UFUNCTION(BlueprintCallable)
 	void CollectMoney(int amount = 1);
 
 	UFUNCTION(BlueprintCallable)
+	void OpenLevel(EMiniGolfLevels level);
+
+	UFUNCTION(BlueprintCallable)
 	int GetMoney() const {return Money;}
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		int NumPoints;
+	int NumPoints;
+
+	UFUNCTION(BlueprintCallable)
+	void HideMenu();
+
+	UFUNCTION(BlueprintCallable)
+	void ShowMenu();
+
+	bool IsPlayerControlled() const { return m_bPlayerControlled; }
+
+	void UpdateMoney();
+
 private:
 	int Money;
+	bool m_bPlayerControlled;
+
+	UPROPERTY(EditAnywhere, Category = "Class Types")
+	TSubclassOf<UUserWidget> MainMenu;
+
+	UUserWidget* m_MainMenu;
+protected:
+	//=================================================================================
+	void OnStart() override;
+
 };

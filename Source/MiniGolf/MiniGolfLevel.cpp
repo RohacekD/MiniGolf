@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "Components/TextBlock.h"
 #include "MiniGolf/MiniGolfBall.h"
+#include "GameFramework/Pawn.h"
+#include "MiniGolf/MGGameInstance.h"
 
 #include "Coin.h"
 
@@ -16,6 +18,9 @@
 void AMiniGolfLevel::BeginPlay()
 {	
 	Super::BeginPlay();
+	PrimaryActorTick.bCanEverTick = true;
+	PrimaryActorTick.bStartWithTickEnabled = true;
+	PrimaryActorTick.bAllowTickOnDedicatedServer = true;
 	
 	TArray<AActor*> FoundActors;
 	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ACoin::StaticClass(), FoundActors);
@@ -26,15 +31,21 @@ void AMiniGolfLevel::BeginPlay()
 	}
 	NumCoins = FoundActors.Num();
 
-	FStringClassReference LevelGUIClassRef(TEXT("/Game/GUI/LevelGUI"));
-	const auto* LevelGUIClass = LevelGUIClassRef.TryLoadClass<UUserWidget>();
-
-	m_LevelGUI = CreateWidget<UUserWidget>(GetGameInstance(), LevelGUI);
-	UpdateHitsGUI();
-	UpdateLevelName();
-	UpdateCoinsText();
-	if(m_LevelGUI)
-		m_LevelGUI->AddToViewport(9999);
+	if (Cast<UMGGameInstance>(GetGameInstance())->IsPlayerControlled())
+	{
+		PlayerControl();
+	}
+	else
+	{
+		auto* firstPlayerController = GetWorld()->GetFirstPlayerController();
+		if (firstPlayerController)
+		{
+			firstPlayerController->bShowMouseCursor = true;
+			firstPlayerController->bEnableClickEvents = true;
+			firstPlayerController->bEnableMouseOverEvents = true;
+			firstPlayerController->SetInputMode(inputModeUI);
+		}
+	}
 }
 
 //=================================================================================
@@ -49,6 +60,33 @@ void AMiniGolfLevel::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	UpdateDistance();
+}
+
+//=================================================================================
+void AMiniGolfLevel::PlayerControl()
+{
+	// FStringClassReference LevelGUIClassRef(TEXT("/Game/GUI/LevelGUI"));
+	// const auto* LevelGUIClass = LevelGUIClassRef.TryLoadClass<UUserWidget>();
+
+	m_LevelGUI = CreateWidget<UUserWidget>(GetGameInstance(), LevelGUI);
+	UpdateHitsGUI();
+	UpdateLevelName();
+	UpdateCoinsText();
+	const auto numControllers = GetWorld()->GetNumPlayerControllers();
+	if (m_LevelGUI)
+		m_LevelGUI->AddToViewport(numControllers);
+
+	const auto controller = GetWorld()->GetFirstPlayerController();
+	controller->bShowMouseCursor = false;
+	controller->bEnableClickEvents = false;
+	controller->bEnableMouseOverEvents = false;
+	controller->SetInputMode(inputModeGame);
+}
+
+//=================================================================================
+void AMiniGolfLevel::LevelFinished()
+{
+	m_LevelGUI->RemoveFromViewport();
 }
 
 //=================================================================================
@@ -99,7 +137,7 @@ void AMiniGolfLevel::UpdateDistance()
 		if (distanceGUI)
 		{
 			const auto direction = m_Player->GetActorLocation() - m_Hole->GetActorLocation();
-			distanceGUI->SetText(FText::Format(LOCTEXT("Distance", "Distance {0}m"), direction.Size()));
+			distanceGUI->SetText(FText::Format(LOCTEXT("Distance", "Distance {0}m"), direction.Size()/1000.f));
 		}
 	}
 }

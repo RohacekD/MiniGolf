@@ -41,12 +41,22 @@ public:
 
 	void Tick(float DeltaSeconds) override;
 
+	UFUNCTION(BlueprintCallable)
+	void PlayerControl();
+
+	UFUNCTION(BlueprintCallable)
+	void LevelFinished();
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateDistance();
 private:
 	void UpdateHitsGUI();
 	void UpdateLevelName();
 	void UpdateCoinsText();
-	void UpdateDistance();
 
 	UUserWidget* m_LevelGUI;
 
+
+	FInputModeGameOnly inputModeGame;
+	FInputModeUIOnly inputModeUI;
 };

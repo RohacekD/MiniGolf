@@ -13,6 +13,10 @@ class AMiniGolfGameMode : public AGameModeBase
 
 public:
 	AMiniGolfGameMode();
+protected:
+	//=================================================================================
+	void BeginPlay() override;
+
 };
 
 
