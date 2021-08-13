@@ -1,0 +1,22 @@
+﻿# Game Czech (Czechia) translation.
+# Copyright Epic Games, Inc. All Rights Reserved.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Game\n"
+"POT-Creation-Date: 2021-08-13 14:50\n"
+"PO-Revision-Date: 2021-08-13 14:50\n"
+"Language-Team: \n"
+"Language: cs-CZ\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#. Key:	HitsGUI
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:52
+#: Source/MiniGolf/MiniGolfLevel.cpp:52
+msgctxt "MyNamespace,HitsGUI"
+msgid "{0} {0}|plural(zero=hits,one=hit,other=hits)"
+msgstr "{0} {0}|plural(zero=úderů,one=úder,other=úderů)"
+

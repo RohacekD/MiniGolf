@@ -6,6 +6,8 @@
 #include "Engine/LevelScriptActor.h"
 #include "MiniGolfLevel.generated.h"
 
+class AMiniGolfBall;
+
 /**
  * 
  */
@@ -22,4 +24,29 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	int NumHits;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level info")
+	int Par;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level info")
+	FText LevelName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UMG Game")
+	TSubclassOf<UUserWidget> LevelGUI;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level info")
+	AMiniGolfBall* m_Player;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level info")
+	AActor* m_Hole;
+
+	void Tick(float DeltaSeconds) override;
+
+private:
+	void UpdateHitsGUI();
+	void UpdateLevelName();
+	void UpdateCoinsText();
+	void UpdateDistance();
+
+	UUserWidget* m_LevelGUI;
+
 };
