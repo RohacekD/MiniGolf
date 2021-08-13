@@ -126,7 +126,7 @@ void AMiniGolfBall::Hit()
 		GetWorldTimerManager().ClearTimer(m_ChargingTime);
 		Ball->AddImpulse(Impulse);
 
-		if (auto* level = Cast< AMiniGolfLevel>(GetLevel())) {
+		if (auto* level = Cast< AMiniGolfLevel>(GetWorld()->GetLevelScriptActor())) {
 			level->OnBallHit();
 		}
 		bCanHit = false;
