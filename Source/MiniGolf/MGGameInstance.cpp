@@ -35,8 +35,8 @@ void UMGGameInstance::LevelFinished(int score)
 }
 
 //=================================================================================
-void UMGGameInstance::CollectMoney()
+void UMGGameInstance::CollectMoney(int amount)
 {
 	// todo play sound
-	Money++;
+	Money += amount;
 }

@@ -27,7 +27,7 @@ public:
 		void LevelFinished(int score);
 
 	UFUNCTION(BlueprintCallable)
-		void CollectMoney();
+	void CollectMoney(int amount = 1);
 
 	UFUNCTION(BlueprintCallable)
 	int GetMoney() const {return Money;}
