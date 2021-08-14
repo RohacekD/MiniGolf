@@ -105,4 +105,23 @@ void UMGGameInstance::UpdateMoney()
 		}
 	}
 }
+
+//=================================================================================
+FColor UMGGameInstance::GetBallColour() const
+{
+	switch (BallColour)
+	{
+	case EMiniGolfBallColour::Pink:
+		return FColor(255, 192, 203);
+		break;
+	case EMiniGolfBallColour::Green:
+		return FColor::Green;
+		break;
+	case EMiniGolfBallColour::Blue:
+	default:
+		return FColor::Blue;
+		break;
+	}
+}
+
 #undef LOCTEXT_NAMESPACE

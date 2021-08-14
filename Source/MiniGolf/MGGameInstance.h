@@ -12,6 +12,14 @@ enum EMiniGolfLevels
 	UEDPIE_0_WaterCreek	UMETA(DisplayName = "WaterCreek"),
 };
 
+UENUM(BlueprintType)
+enum class EMiniGolfBallColour : uint8
+{
+	Blue	UMETA(DisplayName = "Blue"),
+	Pink	UMETA(DisplayName = "Pink"),
+	Green	UMETA(DisplayName = "Green"),
+};
+
 /**
  *
  */
@@ -48,6 +56,11 @@ public:
 
 	void UpdateMoney();
 
+	UFUNCTION(BlueprintCallable)
+	FColor GetBallColour() const;
+
+	UPROPERTY(BlueprintReadWrite)
+	EMiniGolfBallColour BallColour = EMiniGolfBallColour::Blue;
 private:
 	int Money;
 	bool m_bPlayerControlled;
