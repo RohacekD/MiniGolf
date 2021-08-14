@@ -49,6 +49,8 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void UpdateDistance();
+
+	void CoinCollected();
 private:
 	void UpdateHitsGUI();
 	void UpdateLevelName();
@@ -58,6 +60,7 @@ private:
 
 	UUserWidget* m_LevelGUI;
 
+	int NumCollectedCoins = 0;
 
 	FInputModeGameOnly inputModeGame;
 	FInputModeUIOnly inputModeUI;

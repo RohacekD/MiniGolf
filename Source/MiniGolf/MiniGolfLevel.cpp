@@ -151,4 +151,10 @@ void AMiniGolfLevel::UpdateDistance()
 	}
 }
 
+//=================================================================================
+void AMiniGolfLevel::CoinCollected()
+{
+	NumCollectedCoins++;
+}
+
 #undef LOCTEXT_NAMESPACE

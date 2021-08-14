@@ -50,6 +50,9 @@ void UMGGameInstance::CollectMoney(int amount)
 {
 	// todo play sound
 	Money += amount;
+	if (auto level = Cast<AMiniGolfLevel>(GetWorld()->GetLevelScriptActor())) {
+		level->CoinCollected();
+	}
 }
 
 //=================================================================================
