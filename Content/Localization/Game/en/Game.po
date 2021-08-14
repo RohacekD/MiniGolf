@@ -1,0 +1,43 @@
+﻿# Game English translation.
+# Copyright Epic Games, Inc. All Rights Reserved.
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Game\n"
+"POT-Creation-Date: 2021-08-14 15:00\n"
+"PO-Revision-Date: 2021-08-14 15:00\n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Key:	CoinsCollected
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:126
+#: Source/MiniGolf/MiniGolfLevel.cpp:126
+msgctxt "MyNamespace,CoinsCollected"
+msgid "Coins {0}/{1}"
+msgstr "Coins {0}/{1}"
+
+#. Key:	Distance
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:140
+#: Source/MiniGolf/MiniGolfLevel.cpp:140
+msgctxt "MyNamespace,Distance"
+msgid "Distance {0}m"
+msgstr "Distance {0}m"
+
+#. Key:	HitsGUI
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:100
+#: Source/MiniGolf/MiniGolfLevel.cpp:100
+msgctxt "MyNamespace,HitsGUI"
+msgid "{0} {0}|plural(zero=hits,one=hit,other=hits) par {1}"
+msgstr "{0} {0}|plural(zero=hits,one=hit,other=hits) par {1}"
+
+#. Key:	Money
+#. SourceLocation:	Source/MiniGolf/MGGameInstance.cpp:102
+#: Source/MiniGolf/MGGameInstance.cpp:102
+msgctxt "MyNamespace,Money"
+msgid "Coins: {0}"
+msgstr "Coins: {0}"
+

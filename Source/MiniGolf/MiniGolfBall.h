@@ -30,7 +30,7 @@ public:
 
 	/** Vertical impulse to apply when pressing jump */
 	UPROPERTY(EditAnywhere, Category=Ball)
-	float JumpImpulse;
+	float PokeStrength;
 
 
 	//=================================================================================

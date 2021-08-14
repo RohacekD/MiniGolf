@@ -54,13 +54,23 @@ public:
 
 	bool IsPlayerControlled() const { return m_bPlayerControlled; }
 
+	UFUNCTION(BlueprintCallable)
 	void UpdateMoney();
+
+	UFUNCTION(BlueprintCallable)
+	void PayMoney(int money) {Money-=money;}
 
 	UFUNCTION(BlueprintCallable)
 	FColor GetBallColour() const;
 
 	UPROPERTY(BlueprintReadWrite)
 	EMiniGolfBallColour BallColour = EMiniGolfBallColour::Blue;
+
+	UPROPERTY(BlueprintReadWrite)
+	uint8 iPokeMultiplier = 1;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bMagneticHoles;
 private:
 	int Money;
 	bool m_bPlayerControlled;

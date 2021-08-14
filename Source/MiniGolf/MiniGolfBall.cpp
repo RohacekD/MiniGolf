@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "MiniGolf/MGGameInstance.h"
 #include "Engine/CollisionProfile.h"
 #include "Engine/StaticMesh.h"
 #include "DrawDebugHelpers.h"
@@ -46,7 +47,7 @@ AMiniGolfBall::AMiniGolfBall()
 	Camera->bUsePawnControlRotation = false; // We don't want the controller rotating the camera
 
 	// Set up forces
-	JumpImpulse = 350000.0f;
+	PokeStrength = 350000.0f;
 
 	bCanHit = false;
 }
@@ -132,9 +133,14 @@ void AMiniGolfBall::Charge()
 //=================================================================================
 void AMiniGolfBall::Hit()
 {
-	if (bCanHit)
+	if (bCanHit && GetWorldTimerManager().IsTimerActive(m_ChargingTime))
 	{
-		const FVector Impulse = m_ForwardVector * JumpImpulse * GetCurrentPower();
+		uint8 multiplier = 1;
+		if (auto gameInstance = Cast<UMGGameInstance>(GetGameInstance()))
+		{
+			multiplier = gameInstance->iPokeMultiplier;
+		}
+		const FVector Impulse = m_ForwardVector * PokeStrength * GetCurrentPower() * multiplier;
 		GetWorldTimerManager().ClearTimer(m_ChargingTime);
 		Ball->AddImpulse(Impulse);
 
