@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Game\n"
-"POT-Creation-Date: 2021-08-13 14:51\n"
-"PO-Revision-Date: 2021-08-13 14:51\n"
+"POT-Creation-Date: 2021-08-14 15:01\n"
+"PO-Revision-Date: 2021-08-14 15:01\n"
 "Language-Team: \n"
 "Language: cs-CZ\n"
 "MIME-Version: 1.0\n"
@@ -13,10 +13,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
+#. Key:	CoinsCollected
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:126
+#: Source/MiniGolf/MiniGolfLevel.cpp:126
+msgctxt "MyNamespace,CoinsCollected"
+msgid "Coins {0}/{1}"
+msgstr "Mincí {0}/{1}"
+
+#. Key:	Distance
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:140
+#: Source/MiniGolf/MiniGolfLevel.cpp:140
+msgctxt "MyNamespace,Distance"
+msgid "Distance {0}m"
+msgstr "Vzdálenost {0}m"
+
 #. Key:	HitsGUI
-#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:52
-#: Source/MiniGolf/MiniGolfLevel.cpp:52
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:100
+#: Source/MiniGolf/MiniGolfLevel.cpp:100
 msgctxt "MyNamespace,HitsGUI"
-msgid "{0} {0}|plural(zero=hits,one=hit,other=hits)"
+msgid "{0} {0}|plural(zero=hits,one=hit,other=hits) par {1}"
 msgstr "{0} {0}|plural(zero=úderů,one=úder,other=úderů)"
+
+#. Key:	Money
+#. SourceLocation:	Source/MiniGolf/MGGameInstance.cpp:102
+#: Source/MiniGolf/MGGameInstance.cpp:102
+msgctxt "MyNamespace,Money"
+msgid "Coins: {0}"
+msgstr "Mincí: {0}"
 
