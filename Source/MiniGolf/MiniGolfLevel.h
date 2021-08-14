@@ -54,6 +54,8 @@ private:
 	void UpdateLevelName();
 	void UpdateCoinsText();
 
+	void ChangeControllsToUI();
+
 	UUserWidget* m_LevelGUI;
 
 

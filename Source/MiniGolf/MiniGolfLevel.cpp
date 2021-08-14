@@ -37,14 +37,7 @@ void AMiniGolfLevel::BeginPlay()
 	}
 	else
 	{
-		auto* firstPlayerController = GetWorld()->GetFirstPlayerController();
-		if (firstPlayerController)
-		{
-			firstPlayerController->bShowMouseCursor = true;
-			firstPlayerController->bEnableClickEvents = true;
-			firstPlayerController->bEnableMouseOverEvents = true;
-			firstPlayerController->SetInputMode(inputModeUI);
-		}
+		ChangeControllsToUI();
 	}
 }
 
@@ -87,6 +80,7 @@ void AMiniGolfLevel::PlayerControl()
 void AMiniGolfLevel::LevelFinished()
 {
 	m_LevelGUI->RemoveFromViewport();
+	ChangeControllsToUI();
 }
 
 //=================================================================================
@@ -125,6 +119,21 @@ void AMiniGolfLevel::UpdateCoinsText()
 		{
 			numHits->SetText(FText::Format(LOCTEXT("CoinsCollected", "Coins {0}/{1}"), 0, NumCoins));
 		}
+	}
+}
+
+//=================================================================================
+void AMiniGolfLevel::ChangeControllsToUI()
+{
+	auto* firstPlayerController = GetWorld()->GetFirstPlayerController();
+	if (firstPlayerController)
+	{
+		firstPlayerController->bShowMouseCursor = true;
+		firstPlayerController->bEnableClickEvents = true;
+		firstPlayerController->bEnableMouseOverEvents = true;
+		firstPlayerController->SetInputMode(inputModeUI);
+
+		firstPlayerController->UnPossess();
 	}
 }
 

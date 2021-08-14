@@ -27,17 +27,22 @@ UMGGameInstance::~UMGGameInstance() = default;
 //=================================================================================
 void UMGGameInstance::LevelFinished(int score)
 {
-	UWorld* TheWorld = GetWorld();
-
-	FString CurrentLevel = TheWorld->GetMapName();
-	if (CurrentLevel == GetEnumValueAsString("EMiniGolfLevels", EMiniGolfLevels::UEDPIE_0_GrassMill))
-	{
-		UGameplayStatics::OpenLevel(GetWorld(), "WaterCreek");
+	m_bPlayerControlled = false;
+	ShowMenu();
+	if (auto level = Cast<AMiniGolfLevel>(GetWorld()->GetLevelScriptActor())) {
+		level->LevelFinished();
 	}
-	else
-	{
-		UGameplayStatics::OpenLevel(GetWorld(), "GrassMill");
-	}
+	// UWorld* TheWorld = GetWorld();
+	// 
+	// FString CurrentLevel = TheWorld->GetMapName();
+	// if (CurrentLevel == GetEnumValueAsString("EMiniGolfLevels", EMiniGolfLevels::UEDPIE_0_GrassMill))
+	// {
+	// 	UGameplayStatics::OpenLevel(GetWorld(), "WaterCreek");
+	// }
+	// else
+	// {
+	// 	UGameplayStatics::OpenLevel(GetWorld(), "GrassMill");
+	// }
 }
 
 //=================================================================================
@@ -50,7 +55,17 @@ void UMGGameInstance::CollectMoney(int amount)
 //=================================================================================
 void UMGGameInstance::OpenLevel(EMiniGolfLevels level)
 {
-	UGameplayStatics::OpenLevel(GetWorld(), "WaterCreek");
+	switch (level)
+	{
+	case UEDPIE_0_GrassMill:
+		UGameplayStatics::OpenLevel(GetWorld(), "GrassMill");
+		break;
+	case UEDPIE_0_WaterCreek:
+		UGameplayStatics::OpenLevel(GetWorld(), "WaterCreek");
+		break;
+	default:
+		break;
+	}
 	m_bPlayerControlled = true;
 }
 
@@ -58,12 +73,6 @@ void UMGGameInstance::OpenLevel(EMiniGolfLevels level)
 void UMGGameInstance::HideMenu()
 {
 	m_MainMenu->RemoveFromViewport();
-
-	// auto* firstPlayerController = GetWorld()->GetFirstPlayerController();
-	// firstPlayerController->bShowMouseCursor = false;
-	// firstPlayerController->bEnableClickEvents = false;
-	// firstPlayerController->bEnableMouseOverEvents = false;
-	// firstPlayerController->SetInputMode(inputModeGame);
 }
 
 //=================================================================================
@@ -74,14 +83,7 @@ void UMGGameInstance::ShowMenu()
 	if (m_MainMenu)
 		m_MainMenu->AddToViewport(9999);
 
-	// auto* firstPlayerController = GetWorld()->GetFirstPlayerController();
-	// if (firstPlayerController)
-	// {
-	// 	firstPlayerController->bShowMouseCursor = true;
-	// 	firstPlayerController->bEnableClickEvents = true;
-	// 	firstPlayerController->bEnableMouseOverEvents = true;
-	// 	firstPlayerController->SetInputMode(inputModeUI);
-	// }
+	UpdateMoney();
 }
 
 //=================================================================================
