@@ -30,7 +30,17 @@ void UMGGameInstance::LevelFinished(int score)
 	m_bPlayerControlled = false;
 	ShowMenu();
 	if (auto level = Cast<AMiniGolfLevel>(GetWorld()->GetLevelScriptActor())) {
+		score = level->NumHits;
 		level->LevelFinished();
+
+		if (level->Par <= score)
+		{
+			Money += 10;
+		}
+		else
+		{
+			Money += 5;
+		}
 	}
 	// UWorld* TheWorld = GetWorld();
 	// 
