@@ -10,6 +10,7 @@ enum EMiniGolfLevels
 {
 	UEDPIE_0_GrassMill	UMETA(DisplayName = "GrassMill"),
 	UEDPIE_0_WaterCreek	UMETA(DisplayName = "WaterCreek"),
+	UEDPIE_0_Void		UMETA(DisplayName = "Void"),
 };
 
 UENUM(BlueprintType)

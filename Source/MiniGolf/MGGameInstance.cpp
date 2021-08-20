@@ -76,6 +76,9 @@ void UMGGameInstance::OpenLevel(EMiniGolfLevels level)
 	case UEDPIE_0_WaterCreek:
 		UGameplayStatics::OpenLevel(GetWorld(), "WaterCreek");
 		break;
+	case UEDPIE_0_Void:
+		UGameplayStatics::OpenLevel(GetWorld(), "Void");
+		break;
 	default:
 		break;
 	}
