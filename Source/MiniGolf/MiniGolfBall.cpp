@@ -13,6 +13,7 @@
 #include "MiniGolf/MiniGolfLevel.h"
 
 const float AMiniGolfBall::s_ChargeTime = 2.f;
+const static float s_TimeSlowedDown = 1.f;
 
 AMiniGolfBall::AMiniGolfBall()
 	: m_ForwardVector(1.0f, 0.0f, 0.0f)
@@ -63,8 +64,38 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 	if (Ball->GetRigidBodyState(state))
 	{
 		const auto timeUntilAllowHit = GetWorldTimerManager().GetTimerRemaining(m_SinceLastHit);
-		if (!bCanHit && timeUntilAllowHit <= 0.0f && state.LinVel.Size() < 1e-4) {
-			bCanHit = true;
+		const auto currentSpeed = state.LinVel.Size();
+		if (!bCanHit && timeUntilAllowHit <= 0.0f) {
+			if (currentSpeed < 0.1) // speed to small
+			{
+				Ball->PutRigidBodyToSleep();
+				bCanHit = true;
+			}
+			else
+			{
+				// avoid endless waits
+				if (currentSpeed < 50)
+				{
+					// enough time passed by
+					const auto timeInSlowDownRemains = GetWorldTimerManager().GetTimerRemaining(m_SinceSlowDown);
+					if (timeInSlowDownRemains == 0.f)
+					{
+						// ok, we waited long enough, time to sleep
+						Ball->PutRigidBodyToSleep();
+						bCanHit = true;
+					}
+					if (timeInSlowDownRemains < 0.f)
+					{
+						// start timer 
+						GetWorldTimerManager().SetTimer(m_SinceSlowDown, s_TimeSlowedDown, false, s_TimeSlowedDown);
+					}
+				}
+				else
+				{
+					// ball speeded up again
+					GetWorldTimerManager().ClearTimer(m_SinceSlowDown);
+				}
+			}
 		}
 	}
 

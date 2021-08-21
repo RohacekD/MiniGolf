@@ -63,10 +63,12 @@ protected:
 	FTimerHandle m_SinceLastHit;
 	FTimerHandle m_ChargingTime;
 
+	FTimerHandle m_SinceSlowDown;
 
 	//=================================================================================
 	void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable)
 	float GetCurrentPower();
 
 public:
