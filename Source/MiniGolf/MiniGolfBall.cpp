@@ -11,6 +11,9 @@
 #include "Engine/StaticMesh.h"
 #include "DrawDebugHelpers.h"
 #include "MiniGolf/MiniGolfLevel.h"
+#include "Components/SceneComponent.h"
+#include "GameFramework/PhysicsVolume.h"
+#include "Kismet/GameplayStatics.h"
 
 const float AMiniGolfBall::s_ChargeTime = 2.f;
 const static float s_TimeSlowedDown = 1.f;
@@ -60,6 +63,10 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 	if (bCanHit)
 		DrawDebugLine(GetWorld(), Ball->GetComponentLocation() + 0.1f * m_ForwardVector, Ball->GetComponentLocation() + 100.1f * m_ForwardVector, FColor::Red, false, -1.f, 0U, 5.f);
 
+	if (!Cast<UMGGameInstance>(GetGameInstance())->IsPlayerControlled())
+	{
+		return;
+	}
 	FRigidBodyState state;
 	if (Ball->GetRigidBodyState(state))
 	{
@@ -68,8 +75,7 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 		if (!bCanHit && timeUntilAllowHit <= 0.0f) {
 			if (currentSpeed < 0.1) // speed to small
 			{
-				Ball->PutRigidBodyToSleep();
-				bCanHit = true;
+				StopBall();
 			}
 			else
 			{
@@ -81,8 +87,7 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 					if (timeInSlowDownRemains == 0.f)
 					{
 						// ok, we waited long enough, time to sleep
-						Ball->PutRigidBodyToSleep();
-						bCanHit = true;
+						StopBall();
 					}
 					if (timeInSlowDownRemains < 0.f)
 					{
@@ -108,6 +113,39 @@ void AMiniGolfBall::SetupPlayerInputComponent(class UInputComponent* PlayerInput
 
 	PlayerInputComponent->BindAction("Hit", IE_Pressed, this, &AMiniGolfBall::Charge);
 	PlayerInputComponent->BindAction("Hit", IE_Released, this, &AMiniGolfBall::Hit);
+}
+
+//=================================================================================
+bool AMiniGolfBall::IsInCourse() const
+{
+	TArray<AActor*> FoundActors;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APhysicsVolume::StaticClass(), FoundActors);
+	UE_LOG(LogTemp, Warning, TEXT("Volume, %d"), (FoundActors.Num()));
+	for(const auto* volume : FoundActors)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Volume, %s"), *(volume->GetName()));
+		const auto* physVolume = Cast<APhysicsVolume>(volume);
+		if (physVolume && physVolume->IsOverlappingActor(this) && volume->ActorHasTag("CourseVolume"))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+//=================================================================================
+void AMiniGolfBall::StopBall()
+{
+	Ball->PutRigidBodyToSleep();
+	bCanHit = true;
+	if (!IsInCourse())
+	{
+		if (auto* level = Cast< AMiniGolfLevel>(GetWorld()->GetLevelScriptActor())) {
+			level->RespawnPlayer();
+			bCanHit = false;
+			GetWorldTimerManager().SetTimer(m_SinceLastHit, 0.5f, false, 0.5f);
+		}
+	}
 }
 
 //=================================================================================

@@ -55,6 +55,10 @@ protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
+	bool IsInCourse() const;
+
+	void StopBall();
+
 	FVector m_ForwardVector;
 
 	/** Ball can be hit only when it is stationary **/

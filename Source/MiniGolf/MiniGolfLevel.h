@@ -53,6 +53,7 @@ public:
 	void UpdateDistance();
 
 	void CoinCollected();
+	void RespawnPlayer();
 private:
 	void UpdateHitsGUI();
 	void UpdateLevelName();
@@ -60,7 +61,6 @@ private:
 
 	void ChangeControllsToUI();
 
-	void RespawnPlayer();
 
 	UUserWidget* m_LevelGUI;
 

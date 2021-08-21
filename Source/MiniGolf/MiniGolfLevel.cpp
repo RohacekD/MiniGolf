@@ -144,14 +144,7 @@ void AMiniGolfLevel::RespawnPlayer()
 {
 	if (!IsValid(m_Start) || !IsValid(m_Player))
 		return;
-	TArray<AActor*> children;
-	m_Start->GetAllChildActors(children);
-	if (children.Num()==0)
-	{
-		return;
-	}
 	const auto x = m_Start->GetTransform().TransformPosition(FVector(0, 190, 60));
-	const auto spawnPoint = children.begin().operator*()->GetActorLocation();
 	m_Player->SetActorLocation(x);
 }
 
