@@ -58,6 +58,7 @@ protected:
 	FVector m_ForwardVector;
 
 	/** Ball can be hit only when it is stationary **/
+	UPROPERTY(BlueprintReadOnly)
 	bool bCanHit;
 
 	FTimerHandle m_SinceLastHit;
