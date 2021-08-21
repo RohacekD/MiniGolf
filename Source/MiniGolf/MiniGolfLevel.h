@@ -38,6 +38,8 @@ public:
 	AMiniGolfBall* m_Player;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level info")
 	AActor* m_Hole;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level info")
+	AActor* m_Start;
 
 	void Tick(float DeltaSeconds) override;
 
@@ -57,6 +59,8 @@ private:
 	void UpdateCoinsText();
 
 	void ChangeControllsToUI();
+
+	void RespawnPlayer();
 
 	UUserWidget* m_LevelGUI;
 

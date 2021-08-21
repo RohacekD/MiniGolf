@@ -98,12 +98,6 @@ void AMiniGolfBall::Tick(float DeltaSeconds)
 			}
 		}
 	}
-
-	if (GetWorldTimerManager().IsTimerActive(m_ChargingTime))
-	{
-		const auto power = FString::Printf(TEXT("Power %f"), GetCurrentPower());
-		DrawDebugString(GetWorld(), FVector(0, 3, 0), power, this, FColor::White, DeltaSeconds, false, 2.f);
-	}
 }
 
 //=================================================================================
