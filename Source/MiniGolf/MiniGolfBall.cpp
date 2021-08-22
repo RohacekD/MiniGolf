@@ -141,7 +141,7 @@ void AMiniGolfBall::StopBall()
 	if (!IsInCourse())
 	{
 		if (auto* level = Cast< AMiniGolfLevel>(GetWorld()->GetLevelScriptActor())) {
-			UFMODBlueprintStatics::PlayEvent2D(this, m_Outside, false);
+			UFMODBlueprintStatics::PlayEvent2D(this, m_Outside, true);
 			level->RespawnPlayer();
 			bCanHit = false;
 			GetWorldTimerManager().SetTimer(m_SinceLastHit, 0.5f, false, 0.5f);
