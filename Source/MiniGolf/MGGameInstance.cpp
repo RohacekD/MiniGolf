@@ -101,7 +101,7 @@ void UMGGameInstance::OpenLevel(EMiniGolfLevels level)
 void UMGGameInstance::HideMenu()
 {
 	m_MainMenu->RemoveFromViewport();
-	UFMODBlueprintStatics::EventInstanceStop(m_ActiveMusic, true);
+	UFMODBlueprintStatics::EventInstanceSetParameter(m_ActiveMusic, "End", 1.f);
 	UE_LOG(LogTemp, Warning, TEXT("Sound"));
 }
 
@@ -113,6 +113,7 @@ void UMGGameInstance::ShowMenu()
 		FMOD::Studio::System* StudioSystem = IFMODStudioModule::Get().GetStudioSystem(EFMODSystemContext::Runtime);
 		if (StudioSystem)
 		{
+			UFMODBlueprintStatics::EventInstanceStop(m_ActiveMusic, true);
 			m_ActiveMusic = UFMODBlueprintStatics::PlayEvent2D(this, m_MusicEvent, true);
 			// Use it here
 		}
