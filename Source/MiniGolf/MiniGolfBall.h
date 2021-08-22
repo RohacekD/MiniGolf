@@ -82,6 +82,8 @@ public:
 	UFMODEvent* m_Outside;
 	UPROPERTY(EditAnywhere)
 	UFMODEvent* m_HitWall;
+	UPROPERTY(EditAnywhere)
+	UFMODEvent* m_HitBall;
 
 	/** Returns Ball subobject **/
 	FORCEINLINE class UStaticMeshComponent* GetBall() const { return Ball; }

@@ -212,6 +212,8 @@ void AMiniGolfBall::Hit()
 			level->OnBallHit();
 		}
 		bCanHit = false;
+		const auto transform = GetTransform();
+		UFMODBlueprintStatics::PlayEventAtLocation(this, m_HitBall, transform, true);
 		GetWorldTimerManager().SetTimer(m_SinceLastHit, 0.5f, false);
 	}
 }
