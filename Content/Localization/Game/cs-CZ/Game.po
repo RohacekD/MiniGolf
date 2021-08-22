@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Game\n"
-"POT-Creation-Date: 2021-08-14 15:01\n"
-"PO-Revision-Date: 2021-08-14 15:01\n"
+"POT-Creation-Date: 2021-08-22 11:07\n"
+"PO-Revision-Date: 2021-08-22 11:07\n"
 "Language-Team: \n"
 "Language: cs-CZ\n"
 "MIME-Version: 1.0\n"
@@ -13,30 +13,219 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
+#. Key:	116B2F224CEF8D3A9A58FB83B6052B38
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1244.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1244.Text
+msgctxt ",116B2F224CEF8D3A9A58FB83B6052B38"
+msgid "English"
+msgstr "Angličtina"
+
+#. Key:	361D4EC840088CFC0640E7B8610132C5
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_660.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_660.Text
+msgctxt ",361D4EC840088CFC0640E7B8610132C5"
+msgid "Settings"
+msgstr "Nastavení"
+
+#. Key:	389501BB4538E844405D0E896D160832
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_232.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_232.Text
+msgctxt ",389501BB4538E844405D0E896D160832"
+msgid "Shop"
+msgstr "Obchod"
+
+#. Key:	3B5E008E4D6B8215C5B5D084B79AE083
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_2.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_2.Text
+msgctxt ",3B5E008E4D6B8215C5B5D084B79AE083"
+msgid "Green"
+msgstr "Zelená"
+
+#. Key:	3D5C5E9E440EE089A483B082B2C35089
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_7.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_7.Text
+msgctxt ",3D5C5E9E440EE089A483B082B2C35089"
+msgid "Upgrades"
+msgstr "Vylepšení"
+
+#. Key:	44A2E3EC4B4C1F30AAC6A0AD3250FFF5
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_745.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_745.Text
+msgctxt ",44A2E3EC4B4C1F30AAC6A0AD3250FFF5"
+msgid "Select level"
+msgstr "Vybrat level"
+
+#. Key:	44A6EB344FB43D9168591FA13B670E4B
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.Money.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.Money.Text
+msgctxt ",44A6EB344FB43D9168591FA13B670E4B"
+msgid "Coins: 0"
+msgstr "Mince: 0"
+
+#. Key:	52EE89B14B30CA44A80EDBA9142B0BED
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_6.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_6.Text
+msgctxt ",52EE89B14B30CA44A80EDBA9142B0BED"
+msgid "Level 3"
+msgstr ""
+
+#. Key:	5948F95F4990508480C19AA1D456BF78
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_3.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_3.Text
+msgctxt ",5948F95F4990508480C19AA1D456BF78"
+msgid "Czech"
+msgstr "Čeština"
+
+#. Key:	5B7117C640B6205F690F259C01A2E827
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_5.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_5.Text
+msgctxt ",5B7117C640B6205F690F259C01A2E827"
+msgid "Level 2"
+msgstr ""
+
+#. Key:	5FC3EC6E4A7EC748C44E99B7C4552D7A
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_858.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_858.Text
+msgctxt ",5FC3EC6E4A7EC748C44E99B7C4552D7A"
+msgid "Back"
+msgstr "Zpět"
+
+#. Key:	609068CF45C414712679148DD2B112A9
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_4.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_4.Text
+msgctxt ",609068CF45C414712679148DD2B112A9"
+msgid "Level 1"
+msgstr ""
+
+#. Key:	65871E144DB7605788B179A74BD4307A
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1142.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1142.Text
+msgctxt ",65871E144DB7605788B179A74BD4307A"
+msgid "Language"
+msgstr "Jazyk"
+
+#. Key:	6824B09B4CDCF77895D7E49676F8D883
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_456.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_456.Text
+msgctxt ",6824B09B4CDCF77895D7E49676F8D883"
+msgid "Quit game"
+msgstr "Ukončit hru"
+
+#. Key:	785A89D0447751C6D6F200B9C77B688F
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_807.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_807.Text
+msgctxt ",785A89D0447751C6D6F200B9C77B688F"
+msgid "Ball colour"
+msgstr "Barva míčku"
+
+#. Key:	78C5E3054572290F0ECCF7B14158805B
+#. SourceLocation:	/Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.Distance.Text
+#: /Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.Distance.Text
+msgctxt ",78C5E3054572290F0ECCF7B14158805B"
+msgid "Distance"
+msgstr "Vzdálenost"
+
+#. Key:	7B55B8A24F81D4F770D4888C49605C69
+#. SourceLocation:	/Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.CoinsCollected.Text
+#: /Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.CoinsCollected.Text
+msgctxt ",7B55B8A24F81D4F770D4888C49605C69"
+msgid "Coins 0/10"
+msgstr "Mince 0/10"
+
+#. Key:	8EB7BCC54C605B8DF605EA8BA5CE9278
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_190.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_190.Text
+msgctxt ",8EB7BCC54C605B8DF605EA8BA5CE9278"
+msgid "Choose level"
+msgstr "Vybrat level"
+
+#. Key:	939FF2F743C2B84A9B2C2F9687A6F2A1
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock.Text
+msgctxt ",939FF2F743C2B84A9B2C2F9687A6F2A1"
+msgid "Poke strength"
+msgstr "Síla úderu"
+
+#. Key:	9A220EBE4B40D81ABCBA8BA83FA9772D
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.LevelPick.ToolTipText
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.LevelPick.ToolTipText
+msgctxt ",9A220EBE4B40D81ABCBA8BA83FA9772D"
+msgid "Choose level"
+msgstr "Vybrat level"
+
+#. Key:	B2E48A2F4F37F542FB83DFA9EAED7055
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_8.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_8.Text
+msgctxt ",B2E48A2F4F37F542FB83DFA9EAED7055"
+msgid "Magnetic hole"
+msgstr "Magnetické jamky"
+
+#. Key:	B5C4057949868462FB4F02B30FDB8C5E
+#. SourceLocation:	/Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.LevelName.Text
+#: /Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.LevelName.Text
+msgctxt ",B5C4057949868462FB4F02B30FDB8C5E"
+msgid "Level name"
+msgstr "Jméno úrovně"
+
+#. Key:	BE6D183E46FA3DEE23B76FA104D40521
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1.Text
+msgctxt ",BE6D183E46FA3DEE23B76FA104D40521"
+msgid "Pink"
+msgstr "Růžová"
+
+#. Key:	C399FF9F42BA756F42C6009A4A63F9F9
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_979.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_979.Text
+msgctxt ",C399FF9F42BA756F42C6009A4A63F9F9"
+msgid "Blue"
+msgstr "Modrá"
+
+#. Key:	CA1C4CCA4D1F4C12C10B62A2247F53D2
+#. SourceLocation:	/Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.NumHits.Text
+#: /Game/GUI/LevelGUI.LevelGUI_C:WidgetTree.NumHits.Text
+msgctxt ",CA1C4CCA4D1F4C12C10B62A2247F53D2"
+msgid "0 hits par 5"
+msgstr "0 úderů par 5"
+
+#. Key:	E67556534D1D2AA0A280318D6E318DC7
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1455.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_1455.Text
+msgctxt ",E67556534D1D2AA0A280318D6E318DC7"
+msgid "Back"
+msgstr "Zpět"
+
+#. Key:	EBFF84AA4B322CF46A64258D76C79078
+#. SourceLocation:	/Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_329.Text
+#: /Game/GUI/MainMenu.MainMenu_C:WidgetTree.TextBlock_329.Text
+msgctxt ",EBFF84AA4B322CF46A64258D76C79078"
+msgid "Shop"
+msgstr "Obchod"
+
 #. Key:	CoinsCollected
-#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:126
-#: Source/MiniGolf/MiniGolfLevel.cpp:126
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:122
+#: Source/MiniGolf/MiniGolfLevel.cpp:122
 msgctxt "MyNamespace,CoinsCollected"
 msgid "Coins {0}/{1}"
 msgstr "Mincí {0}/{1}"
 
 #. Key:	Distance
-#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:140
-#: Source/MiniGolf/MiniGolfLevel.cpp:140
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:160
+#: Source/MiniGolf/MiniGolfLevel.cpp:160
 msgctxt "MyNamespace,Distance"
 msgid "Distance {0}m"
 msgstr "Vzdálenost {0}m"
 
 #. Key:	HitsGUI
-#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:100
-#: Source/MiniGolf/MiniGolfLevel.cpp:100
+#. SourceLocation:	Source/MiniGolf/MiniGolfLevel.cpp:96
+#: Source/MiniGolf/MiniGolfLevel.cpp:96
 msgctxt "MyNamespace,HitsGUI"
 msgid "{0} {0}|plural(zero=hits,one=hit,other=hits) par {1}"
 msgstr "{0} {0}|plural(zero=úderů,one=úder,other=úderů)"
 
 #. Key:	Money
-#. SourceLocation:	Source/MiniGolf/MGGameInstance.cpp:102
-#: Source/MiniGolf/MGGameInstance.cpp:102
+#. SourceLocation:	Source/MiniGolf/MGGameInstance.cpp:120
+#: Source/MiniGolf/MGGameInstance.cpp:120
 msgctxt "MyNamespace,Money"
 msgid "Coins: {0}"
 msgstr "Mincí: {0}"
