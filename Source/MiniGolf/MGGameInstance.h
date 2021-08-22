@@ -2,8 +2,13 @@
 
 #pragma once
 
+#include "FMODEvent.h"
 #include "Engine/GameInstance.h"
+#include "FMODBlueprintStatics.h"
+#include "fmod_studio.hpp"
+#include "FMODBank.h"
 #include "MGGameInstance.generated.h"
+
 
 UENUM(BlueprintType)
 enum EMiniGolfLevels
@@ -72,12 +77,19 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	bool bMagneticHoles;
+
+	UPROPERTY(BlueprintReadWrite)
+	UFMODBank* m_MusicBank;
 private:
 	int Money;
 	bool m_bPlayerControlled;
 
+	FFMODEventInstance m_ActiveMusic;
+
 	UPROPERTY(EditAnywhere, Category = "Class Types")
 	TSubclassOf<UUserWidget> MainMenu;
+	UPROPERTY(EditAnywhere)
+	UFMODEvent* m_MusicEvent;
 
 	UUserWidget* m_MainMenu;
 protected:

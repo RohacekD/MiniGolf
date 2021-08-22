@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "FMODEvent.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "MiniGolfBall.generated.h"
@@ -76,7 +77,12 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	float GetCurrentPower();
 
-public:
+public:	
+	UPROPERTY(EditAnywhere)
+	UFMODEvent* m_Outside;
+	UPROPERTY(EditAnywhere)
+	UFMODEvent* m_HitWall;
+
 	/** Returns Ball subobject **/
 	FORCEINLINE class UStaticMeshComponent* GetBall() const { return Ball; }
 	/** Returns SpringArm subobject **/

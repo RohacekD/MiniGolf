@@ -8,6 +8,9 @@
 #include "Components/TextBlock.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 
+#include "fmod_studio.hpp"
+#include "FMODStudioModule.h"
+
 #define LOCTEXT_NAMESPACE "MyNamespace"
 
 template<typename TEnum>
@@ -40,6 +43,15 @@ void UMGGameInstance::LevelFinished(int score)
 		else
 		{
 			Money += 5;
+		}
+	}
+
+	if (IFMODStudioModule::IsAvailable())
+	{
+		FMOD::Studio::System* StudioSystem = IFMODStudioModule::Get().GetStudioSystem(EFMODSystemContext::Runtime);
+		if (StudioSystem)
+		{
+			//StudioSystem->getBank("Music", );
 		}
 	}
 	// UWorld* TheWorld = GetWorld();
@@ -89,11 +101,22 @@ void UMGGameInstance::OpenLevel(EMiniGolfLevels level)
 void UMGGameInstance::HideMenu()
 {
 	m_MainMenu->RemoveFromViewport();
+	UFMODBlueprintStatics::EventInstanceStop(m_ActiveMusic, true);
+	UE_LOG(LogTemp, Warning, TEXT("Sound"));
 }
 
 //=================================================================================
 void UMGGameInstance::ShowMenu()
 {
+	if (IFMODStudioModule::IsAvailable())
+	{
+		FMOD::Studio::System* StudioSystem = IFMODStudioModule::Get().GetStudioSystem(EFMODSystemContext::Runtime);
+		if (StudioSystem)
+		{
+			m_ActiveMusic = UFMODBlueprintStatics::PlayEvent2D(this, m_MusicEvent, true);
+			// Use it here
+		}
+	}
 	m_bPlayerControlled = false;
 	m_MainMenu = CreateWidget<UUserWidget>(this, MainMenu);
 	if (m_MainMenu)
