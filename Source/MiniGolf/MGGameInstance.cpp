@@ -44,6 +44,7 @@ void UMGGameInstance::LevelFinished(int score)
 		{
 			Money += 5;
 		}
+		UpdateMoney();
 	}
 
 	if (IFMODStudioModule::IsAvailable())
