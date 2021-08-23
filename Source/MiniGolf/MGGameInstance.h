@@ -85,6 +85,10 @@ private:
 
 	FFMODEventInstance m_ActiveMusic;
 
+
+	FTimerHandle m_PlayMenuMusic;
+	void StartMenuMusic();
+
 	UPROPERTY(EditAnywhere, Category = "Class Types")
 	TSubclassOf<UUserWidget> MainMenu;
 	UPROPERTY(EditAnywhere)

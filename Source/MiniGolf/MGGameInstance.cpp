@@ -30,6 +30,7 @@ UMGGameInstance::~UMGGameInstance() = default;
 //=================================================================================
 void UMGGameInstance::LevelFinished(int score)
 {
+	GetWorld()->GetTimerManager().SetTimer(m_PlayMenuMusic, this, &UMGGameInstance::StartMenuMusic, 11.f, false, 11.f);
 	m_bPlayerControlled = false;
 	ShowMenu();
 	if (auto level = Cast<AMiniGolfLevel>(GetWorld()->GetLevelScriptActor())) {
@@ -109,16 +110,6 @@ void UMGGameInstance::HideMenu()
 //=================================================================================
 void UMGGameInstance::ShowMenu()
 {
-	if (IFMODStudioModule::IsAvailable())
-	{
-		FMOD::Studio::System* StudioSystem = IFMODStudioModule::Get().GetStudioSystem(EFMODSystemContext::Runtime);
-		if (StudioSystem)
-		{
-			UFMODBlueprintStatics::EventInstanceStop(m_ActiveMusic, true);
-			m_ActiveMusic = UFMODBlueprintStatics::PlayEvent2D(this, m_MusicEvent, true);
-			// Use it here
-		}
-	}
 	m_bPlayerControlled = false;
 	m_MainMenu = CreateWidget<UUserWidget>(this, MainMenu);
 	if (m_MainMenu)
@@ -128,9 +119,26 @@ void UMGGameInstance::ShowMenu()
 }
 
 //=================================================================================
+void UMGGameInstance::StartMenuMusic()
+{
+	if (!m_bPlayerControlled && IFMODStudioModule::IsAvailable())
+	{
+		FMOD::Studio::System* StudioSystem = IFMODStudioModule::Get().GetStudioSystem(EFMODSystemContext::Runtime);
+		if (StudioSystem)
+		{
+			UFMODBlueprintStatics::EventInstanceStop(m_ActiveMusic, true);
+			m_ActiveMusic = UFMODBlueprintStatics::PlayEvent2D(this, m_MusicEvent, true);
+			// Use it here
+		}
+	}
+}
+
+//=================================================================================
 void UMGGameInstance::OnStart()
 {
 	Super::OnStart();
+	// first run, no need for a big delay
+	GetWorld()->GetTimerManager().SetTimer(m_PlayMenuMusic, this, &UMGGameInstance::StartMenuMusic, .5f, false, .5f);
 	ShowMenu();
 }
 
