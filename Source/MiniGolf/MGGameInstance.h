@@ -6,7 +6,6 @@
 #include "Engine/GameInstance.h"
 #include "FMODBlueprintStatics.h"
 #include "fmod_studio.hpp"
-#include "FMODBank.h"
 #include "MGGameInstance.generated.h"
 
 
