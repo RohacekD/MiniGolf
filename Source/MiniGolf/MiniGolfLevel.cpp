@@ -76,6 +76,17 @@ void AMiniGolfLevel::PlayerControl()
 	controller->bEnableClickEvents = false;
 	controller->bEnableMouseOverEvents = false;
 	controller->SetInputMode(inputModeGame);
+
+
+	if (IFMODStudioModule::IsAvailable())
+	{
+		FMOD::Studio::System* StudioSystem = IFMODStudioModule::Get().GetStudioSystem(EFMODSystemContext::Runtime);
+		if (StudioSystem)
+		{
+			m_ActiveMusic = UFMODBlueprintStatics::PlayEvent2D(this, m_LevelSoundrack, true);
+			// Use it here
+		}
+	}
 }
 
 //=================================================================================
@@ -83,6 +94,8 @@ void AMiniGolfLevel::LevelFinished()
 {
 	m_LevelGUI->RemoveFromViewport();
 	ChangeControllsToUI();
+
+	UFMODBlueprintStatics::EventInstanceStop(m_ActiveMusic, true);
 }
 
 //=================================================================================

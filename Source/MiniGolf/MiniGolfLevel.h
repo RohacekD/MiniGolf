@@ -2,6 +2,9 @@
 
 #pragma once
 
+#include "FMODEvent.h"
+#include "FMODBlueprintStatics.h"
+#include "fmod_studio.hpp"
 #include "CoreMinimal.h"
 #include "Engine/LevelScriptActor.h"
 #include "MiniGolfLevel.generated.h"
@@ -40,6 +43,9 @@ public:
 	AActor* m_Hole;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Level info")
 	AActor* m_Start;
+	UPROPERTY(EditAnywhere, Category = "Level info")
+	UFMODEvent* m_LevelSoundrack;
+
 
 	void Tick(float DeltaSeconds) override;
 
@@ -61,6 +67,7 @@ private:
 
 	void ChangeControllsToUI();
 
+	FFMODEventInstance m_ActiveMusic;
 
 	UUserWidget* m_LevelGUI;
 
