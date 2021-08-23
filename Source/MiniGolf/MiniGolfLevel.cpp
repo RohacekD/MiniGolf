@@ -93,6 +93,7 @@ void AMiniGolfLevel::PlayerControl()
 void AMiniGolfLevel::LevelFinished()
 {
 	m_LevelGUI->RemoveFromViewport();
+	m_LevelGUI = nullptr;
 	ChangeControllsToUI();
 
 	UFMODBlueprintStatics::EventInstanceStop(m_ActiveMusic, true);
