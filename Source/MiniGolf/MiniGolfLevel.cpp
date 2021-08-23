@@ -132,7 +132,7 @@ void AMiniGolfLevel::UpdateCoinsText()
 		auto* numHits = Cast<UTextBlock>(m_LevelGUI->GetWidgetFromName("CoinsCollected"));
 		if (numHits)
 		{
-			numHits->SetText(FText::Format(LOCTEXT("CoinsCollected", "Coins {0}/{1}"), 0, NumCoins));
+			numHits->SetText(FText::Format(LOCTEXT("CoinsCollected", "Coins {0}/{1}"), NumCollectedCoins, NumCoins));
 		}
 	}
 }
