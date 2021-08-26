@@ -81,6 +81,11 @@ public:
 	bool bTraceBall = false;
 
 	UPROPERTY(BlueprintReadWrite)
+	bool bLaserSightBall = false;
+
+
+
+	UPROPERTY(BlueprintReadWrite)
 	UFMODBank* m_MusicBank;
 private:
 	int Money;
