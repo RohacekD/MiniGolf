@@ -60,8 +60,6 @@ AMiniGolfBall::AMiniGolfBall()
 void AMiniGolfBall::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
-	if (bCanHit)
-		DrawDebugLine(GetWorld(), Ball->GetComponentLocation() + 0.1f * m_ForwardVector, Ball->GetComponentLocation() + 100.1f * m_ForwardVector, FColor::Red, false, -1.f, 0U, 5.f);
 
 	if (!Cast<UMGGameInstance>(GetGameInstance())->IsPlayerControlled())
 	{
@@ -168,6 +166,18 @@ float AMiniGolfBall::GetCurrentPower()
 }
 
 //=================================================================================
+FVector AMiniGolfBall::GetCurrentDirection()
+{
+	return m_ForwardVector;
+}
+
+//=================================================================================
+float AMiniGolfBall::GetMaxPower()
+{
+	return PokeStrength;
+}
+
+//=================================================================================
 void AMiniGolfBall::TurnRight(float Val)
 {
 	const FRotator rotator(0.f, Val, 0.f);
@@ -204,7 +214,7 @@ void AMiniGolfBall::Hit()
 		{
 			multiplier = gameInstance->iPokeMultiplier;
 		}
-		const FVector Impulse = m_ForwardVector * PokeStrength * GetCurrentPower() * multiplier;
+		const FVector Impulse = GetCurrentDirection() * PokeStrength * GetCurrentPower() * multiplier;
 		GetWorldTimerManager().ClearTimer(m_ChargingTime);
 		Ball->AddImpulse(Impulse);
 

@@ -75,7 +75,10 @@ public:
 	uint8 iPokeMultiplier = 1;
 
 	UPROPERTY(BlueprintReadWrite)
-	bool bMagneticHoles;
+	bool bMagneticHoles = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bTraceBall = false;
 
 	UPROPERTY(BlueprintReadWrite)
 	UFMODBank* m_MusicBank;

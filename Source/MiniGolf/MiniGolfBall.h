@@ -77,6 +77,11 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	float GetCurrentPower();
 
+	UFUNCTION(BlueprintCallable)
+	FVector GetCurrentDirection();
+
+	UFUNCTION(BlueprintCallable)
+	float GetMaxPower();
 public:	
 	UPROPERTY(EditAnywhere)
 	UFMODEvent* m_Outside;
